@@ -31,9 +31,10 @@ body {
 
 #box p {
   padding-bottom: 30px;
-  a {
-    color: #000;
-  }
+}
+
+a {
+  color: #000;
 }
 
 form {
