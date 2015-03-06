@@ -18,17 +18,11 @@ end
 
 post '/' do
   original_url = params[:s]
-  
-  if redis.get(original_url)
-    short_url = REDIS.get(original_url)
-    code = "I already shortened this, here it is:<br><a href=
-           '\/#{short_url}'>#{short_url}<\/a>"
-  else
-    short_url = rand(1000).to_s(16)
-    REDIS.set(short_url, original_url)
-    code = "Here it is your super short url:<br><a href='\/#{short_url}'>
-           #{short_url}<\/a>"
-  end
+
+  short_url = rand(1000).to_s(16)
+  REDIS.set(short_url, original_url)
+  code = "Here it is your super short url:<br><a href='\/#{short_url}'>
+          #{short_url}<\/a>"
   erb code
 end
 
