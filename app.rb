@@ -11,24 +11,17 @@ end
 
 get '/new.json' do
   shortify(params[:url])
-
   content_type :json
   { "short_url" => "#{ROOT_URL}/#{@short_url}" }
 end
 
 get '/' do
-  code = "Write your URL in the field and press enter to get it shortened!!<br>
-          <br><form action='/' method='post'><input type='text' name='s'><input 
-          type='submit'></form>"
-  erb code
+  erb 'index.html'.to_sym
 end
 
 post '/' do
   shortify(params[:s])
-
-  code = "Here it is your super short url:<br><a href='\/#{@short_url}'>
-          #{@short_url}<\/a>"
-  erb code
+  erb 'show.html'.to_sym
 end
 
 
