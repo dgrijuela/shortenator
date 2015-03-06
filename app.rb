@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'redis'
-require 'pry'
 require 'json'
 
 configure do
