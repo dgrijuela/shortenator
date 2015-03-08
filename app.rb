@@ -33,7 +33,7 @@ private
 
 def shortify(params)
   original_url = params
-  unless original_url =~ /^http:\/\/.*$/ 
+  unless original_url =~ /^http:\/\/.*$|^https:\/\/.*$/ 
     original_url = "http://#{original_url}"
   end
   require 'securerandom'
