@@ -1,0 +1,14 @@
+<div id='ranking'>
+  <ul class='ranking-header'>
+    <li>Short URL</li>
+    <li>Long URL</li>
+    <li># Visits</li>
+  </ul>
+  <% @ranking.reverse.first(10).each do |r| %>
+    <ul class='ranking-content'>
+      <li><a href=<%= ROOT_URL + '/' + r[0] %>><%= r[0] %></a></li>
+      <li><a href="<%= r[2] %>"><%= r[2] %></a></li>
+      <li><%= r[1].to_i %></li>
+    </ul>
+  <% end %>
+</div>

@@ -7,7 +7,13 @@
         <p>Here it is your super short url:</p>
         <a href="<%= @short_url %>"><%= @short_url %></a>
       </div>
+      <div id='ranking-link'>
+        <a href="#ranking">Ranking<br>▾</a>
+      </div>
     </div>
+
+    <%= erb 'ranking.html'.to_sym %>
+
   <script type="text/javascript" src="/js/particles.min.js"></script>
   <script type="text/javascript" src="/js/main.js"></script>
   </body>

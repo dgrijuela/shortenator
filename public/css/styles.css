@@ -2,12 +2,12 @@ body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
   height: 100vh;
-  background: #a50000;
 }
 
 #particles-js {
   width: 100%;
   height: 100%;
+  background: #a50000;
 }
 
 #box {
@@ -47,4 +47,33 @@ input[type=text] {
   padding: 10px;
   font-size: 20px;
   text-align: center;
+}
+
+.ranking-header, .ranking-content {
+  display: flex;
+  text-align: center;
+}
+
+.ranking-header {
+  font-weight: bold;
+}
+
+#ranking-link {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+#ranking-link a {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.ranking-header li, .ranking-content li {
+  flex: 1;
+  display: inline;
 }
