@@ -5,8 +5,7 @@ require 'json'
 configure do
   redisUri = ENV["REDISTOGO_URL"] || 'redis://localhost:6379'
   uri = URI.parse(redisUri) 
-  REDIS_URLS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password, db: 1) # List
-  REDIS_COUNTER = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password, db: 2) # Shorted set
+  REDIS = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
   ROOT_URL = "https://shortenator.herokuapp.com"
 end
 
@@ -28,8 +27,8 @@ post '/' do
 end
 
 get '/:short_url' do |short_url|
-  count(short_url)
-  redirect REDIS_URLS.get(short_url)
+  incr_count(short_url)
+  redirect REDIS.hget(short_url, "original_url")
 end
 
 private
@@ -41,22 +40,23 @@ def shortify(params)
   end
   require 'securerandom'
   @short_url = SecureRandom.hex(2)
-  REDIS_URLS.set(@short_url, original_url)
+  REDIS.hmset(@short_url, 
+              "original_url", original_url, 
+              "counter", "1")
 end
 
-def count(short_url)
-  if REDIS_COUNTER.zscore 'counter', short_url
-    REDIS_COUNTER.zincrby 'counter', 1, short_url
+def incr_count(short_url)
+  if REDIS.zscore 'counter', short_url
+    REDIS.zincrby 'counter', 1, short_url
   else
-    REDIS_COUNTER.zadd 'counter', 1, short_url
+    REDIS.zadd 'counter', 1, short_url
   end
 end
 
 def get_ranking
-  @ranking = REDIS_COUNTER.zrange 'counter', 0, -1, { with_scores: true }
+  @ranking = REDIS.zrange 'counter', 0, -1, { with_scores: true }
   @ranking.each do |r|
     short_url = r.first
-    r.push REDIS_URLS.get(short_url)
+    r.push REDIS.hget(short_url, "original_url")
   end
-
 end
