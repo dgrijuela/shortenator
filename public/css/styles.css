@@ -56,6 +56,8 @@ input[type=text] {
 
 .ranking-header {
   font-weight: bold;
+  font-size: 20px;
+  padding: 20px 0;
 }
 
 #ranking-link {
@@ -76,4 +78,5 @@ input[type=text] {
 .ranking-header li, .ranking-content li {
   flex: 1;
   display: inline;
+  padding-top: 20px;
 }
