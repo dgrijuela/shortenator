@@ -79,6 +79,7 @@ input[type=text] {
   text-decoration: none;
   font-size: 25px;
   font-weight: bold;
+  border-bottom: 0;
 }
 
 .ranking-header li, .ranking-content li {
