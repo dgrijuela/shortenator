@@ -60,6 +60,10 @@ input[type=text] {
   padding: 20px 0;
 }
 
+.ranking-content {
+  padding: 0;
+}
+
 #ranking-link {
   position: absolute;
   bottom: 0;
