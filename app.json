@@ -1,0 +1,6 @@
+{
+  "name": "Shortenator",
+  "description": "URL Shortener with ranking of most visited",
+  "repository": "https://github.com/dgrijuela/shortenator",
+  "keywords": ["sinatra", "redis"]
+}
